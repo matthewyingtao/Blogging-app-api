@@ -1,22 +1,22 @@
 from flask import Flask, request
 from replit import db
 import difflib
+import os
 import json
 from datetime import datetime
 from collections import OrderedDict
 
 app = Flask(__name__)
+app.secret_key = os.environ['SECRET_KEY']
 app.config['ENV'] = 'development'
 app.config['DEBUG'] = True
 app.config['TESTING'] = True
 
 def isNewTitle(key):
-    try:
-        if db[key]:
-            return False
-    except KeyError:
+    if key in db.keys():
+        return False
+    else:
         return True
-    return True
 
 
 @app.route('/', methods = ['GET', 'POST'])
@@ -52,11 +52,9 @@ def search(word):
     search_word = word.replace(" ", "")
     nearest_titles = difflib.get_close_matches(search_word, titles)
     close_posts = {}
-    try:
+    if nearest_titles:
         for title in nearest_titles:
             close_posts[title] = db[title]
-        return json.dumps(close_posts)
-    except:
-        return "{}"
+    return json.dumps(close_posts)
 
 app.run(host='0.0.0.0', port=8080)
