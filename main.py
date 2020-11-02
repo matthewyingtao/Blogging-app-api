@@ -1,16 +1,23 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 from replit import db
 import difflib
 import os
 import json
+import random
 from datetime import datetime
 from collections import OrderedDict
+from flask_cors import CORS
 
 app = Flask(__name__)
 app.secret_key = os.environ['SECRET_KEY']
 app.config['ENV'] = 'development'
 app.config['DEBUG'] = True
 app.config['TESTING'] = True
+
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
+delete_key = os.environ['DELETE_KEY']
 
 def isNewTitle(key):
     if key in db.keys():
@@ -22,10 +29,15 @@ def isNewTitle(key):
 @app.route('/', methods = ['GET', 'POST'])
 def index():
     if request.method == 'GET':
-        return "You shouldn't be here."
+        return render_template('index.html')
     if request.method == 'POST':
         data = request.get_json(force=True)
-        if isNewTitle(data['title']):
+        if data['body'] == delete_key:
+            keys = db.keys()
+            for key in keys:
+                del db[key]
+            print("cleared database!")
+        elif not data['title'] in db.keys():
             data['likes'] = "0"
             data['date']= datetime.now().timestamp()
             db[data['title']] = data
@@ -34,12 +46,19 @@ def index():
             return "An error has occurred"
     return "hi bot"
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 @app.route('/posts')
 def posts():
     keys = db.keys()
     post_dict = {}
     for key in keys:
-        post_dict[key] = db[key]
+        try:
+            post_dict[key] = db[key]
+        except KeyError:
+            continue
     sorted_keys = sorted(post_dict, key=lambda x: (post_dict[x]['date']), reverse=True)
     sorted_data = OrderedDict()
     for key in sorted_keys:
@@ -57,4 +76,11 @@ def search(word):
             close_posts[title] = db[title]
     return json.dumps(close_posts)
 
-app.run(host='0.0.0.0', port=8080)
+
+@app.route('/random')
+def random_post():
+    titles = list(db.keys())
+    rand_title = random.choice(titles)
+    return json.dumps(db[rand_title])
+
+app.run(host='0.0.0.0', port=8080, threaded=True)
