@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 	<meta charset="utf-8">
@@ -8,33 +8,50 @@
 	<link href="{{ url_for('static', filename='normalize.css') }}" rel="stylesheet" type="text/css" />
 	<link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="{{ url_for('static', filename='animate.css') }}" />
-	<link rel="stylesheet" href="{{ url_for('static', filename='owlcarousel/owl.carousel.min.css') }}" />
+    <link rel="icon" 
+      type="image/png"
+      href="{{ url_for('static', filename='assets/bean.png') }}">
 </head>
 
 <body onload="new WOW().init();">
 	<header>
-		<div class="logo">
-			<img src="{{ url_for('static', filename='assets/bean.png') }}" class="logo-img">
+		<a href="{{ url_for('index') }}" class="logo">
+			<img src="{{ url_for('static', filename='assets/bean.png') }}" class="logo-img" id="logo-img" alt="logo">
             <h1 class="logo-text">BLOGG</h1>
-        </div>
+        </a>
         <nav>
+            <a id="mode-toggle">Dark Mode</a>
             <a href="{{ url_for('about') }}">About</a>
-            <a href="contact.html">Contact</a>
-            <a href="join.html">Join</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+            <a href="http://witty-tree.surge.sh/#/" id="join">Join</a>
         </nav>
 	</header>
     <main>
         {% block content %}{% endblock %}
     </main>
-    <footer>I'm the footer</footer>
+    <footer>
+        <div class="footer-main">
+            <h1 class="logo-text">BLOGG</h1>
+        </div>
+        <div class="footer-sub">
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('about') }}">About</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+            <a href="http://witty-tree.surge.sh/#/">Join</a>
+        </div>
+        <div class="footer-sub">
+            <img src="{{ url_for('static', filename='assets/flutterlogo.png') }}" class="footer-img">
+            <img src="{{ url_for('static', filename='assets/pythonlogo.png') }}" class="footer-img">
+            <img src="{{ url_for('static', filename='assets/replitlogo.png') }}" class="footer-img">
+        </div>
+    </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js">
-	</script>
-	<script src="{{ url_for('static', filename='owlcarousel/owl.carousel.min.js') }}">
 	</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js">
 	</script>
 	<script src="{{ url_for('static', filename='script.js') }}">
 	</script>
+    <script src="//instant.page/5.1.0" type="module" integrity="sha384-by67kQnR+pyfy8yWP4kPO12fHKRLHZPfEsiSXR8u2IKcTdxD805MGUXBzVPnkLHw"></script>
 </body>
 
 </html>

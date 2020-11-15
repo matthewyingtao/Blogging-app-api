@@ -10,9 +10,9 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 app.secret_key = os.environ['SECRET_KEY']
-app.config['ENV'] = 'development'
-app.config['DEBUG'] = True
-app.config['TESTING'] = True
+app.config['ENV'] = 'production'
+app.config['DEBUG'] = False
+app.config['TESTING'] = False
 
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -49,6 +49,10 @@ def index():
 @app.route('/about')
 def about():
     return render_template('about.html')
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
 
 @app.route('/posts')
 def posts():

@@ -1,60 +1,58 @@
-{% extends "base.html" %}
-
-{% block content %}
-    <section>
-        <article class="wow animate__fadeInDown" data-wow-duration="1s">
-            <h1>Hello I'm Matthew</h1>
-            <p>I made a terrible blogging app with a Flask-based backend and used Flutter to develop the frontend.</p>
-            <h3>Many people around the world are using Blogg such as:</h3>
-            <ul>
-                <li>john</li>
-            </ul>
-            <button class="right" onclick="window.open('http://witty-tree.surge.sh/#/');">Join</button>
+{% extends "base.html" %} {% block content %}
+<section class="screen-height" id="hero">
+	<article class="wow animate__fadeInDown" data-wow-duration="1s">
+		<h1>Kia ora, I'm Matthew</h1>
+		<p>I made a terrible blogging app with a Flask-based backend and used Flutter to develop the frontend.</p>
+		<h3>Many people around the world are using Blogg such as:</h3>
+		<ul>
+			<li>john</li>
+		</ul>
+		<button class="right" onclick="window.open('http://witty-tree.surge.sh/#/');">Join</button>
         </article>
         <article>
-            <img src="{{ url_for('static', filename='assets/mockup.jpg') }}" class="right wow animate__fadeIn" data-wow-duration="1s">
+            <img src="{{ url_for('static', filename='assets/mockup.jpg') }}" class="right wow animate__fadeIn" data-wow-duration="1s" alt="blogg mockup">
         </article>
     </section>
-    <section class="column narrow">
+    <section class="column">
         <h1 class="wow animate__fadeInLeft" data-wow-duration="1s">Coming Features</h1>
-        <div class="owl-carousel owl-theme">
+        <div class="card-container">
             <div class="card">
-                <img src="{{ url_for('static', filename='assets/landscape.jpg') }}" class="card-img">
+                <img src="{{ url_for('static', filename='assets/landscape.jpg') }}" class="card-img" alt="card image">
                 <h2 class="card-heading">Accounts</h2>
                 <div class="card-body">
                     <p>Cause you need to see who posted what</p>
                 </div>
             </div>
             <div class="card">
-                <img src="{{ url_for('static', filename='assets/clock.jpg') }}" class="card-img">
+                <img src="{{ url_for('static', filename='assets/clock.jpg') }}" class="card-img" alt="card image">
                 <h2 class="card-heading">Timestamps</h2>
                 <div class="card-body">
                     <p>Timestamps are already implemented server-side and would only need frontend work.</p>
                 </div>
             </div>
             <div class="card">
-                <img src="{{ url_for('static', filename='assets/heart.jpg') }}" class="card-img">
+                <img src="{{ url_for('static', filename='assets/heart.jpg') }}" class="card-img" alt="card image">
                 <h2 class="card-heading">Likes and Favorites</h2>
                 <div class="card-body">
                     <p>So you can know which posts are the most popular.</p>
                 </div>
             </div>
             <div class="card">
-                <img src="{{ url_for('static', filename='assets/heart.jpg') }}" class="card-img">
+                <img src="{{ url_for('static', filename='assets/heart.jpg') }}" class="card-img" alt="card image">
                 <h2 class="card-heading">filler1</h2>
                 <div class="card-body">
                     <p>filler doing its job of having text to fill the page</p>
                 </div>
             </div>
             <div class="card">
-                <img src="{{ url_for('static', filename='assets/dog.jpg') }}" class="card-img">
+                <img src="{{ url_for('static', filename='assets/dog.jpg') }}" class="card-img" alt="card image">
                 <h2 class="card-heading">filler2</h2>
                 <div class="card-body">
                     <p>filler doing its job of having text to fill the page</p>
                 </div>
             </div>
             <div class="card">
-                <img src="{{ url_for('static', filename='assets/landscape.jpg') }}" class="card-img">
+                <img src="{{ url_for('static', filename='assets/landscape.jpg') }}" class="card-img" alt="card image">
                 <h2 class="card-heading">filler3</h2>
                 <div class="card-body">
                     <p>filler doing its job of having text to fill the page</p>

@@ -1,0 +1,25 @@
+{% extends "base.html" %} 
+
+{% block content %}
+<div class="jumbotron screen-height" id="hero">
+	<h1 class="wow animate__zoomIn" data-wow-duration="1s">Contact Us</h1>
+    <div class="row">
+        <button id="business">Business</button>
+        <button id="personal">Personal</button>
+    </div>
+</div>
+<section class="form-container column">
+    <h1 id="form-use"></h1>
+    <form>
+        <label for="full-name">Full Name</label>
+        <input type="text" id="full-name" name="fullname" placeholder="Your full name...">
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email" placeholder="Your Email...">
+        <label for="details">Details about your request</label>
+        <textarea name="details" rows="8"></textarea>
+        <input type="submit" value="Submit">
+    </form>
+</section>
+<script src="{{ url_for('static', filename='contact.js') }}">
+</script>
+{% endblock %}
